@@ -4,7 +4,7 @@
 
 ## 사이트 구조
 
-- **Home** (`#home`): 개발자 소개, 핵심 역량, 대표 프로젝트 미리보기.
+- **Home** (`#home`): 개발자 소개, 핵심 역량.
 - **About Me** (`#about`): 개발 가치관, 관심 분야, 학력 및 주요 활동.
 - **스킬 및 역량** (`#tech-stack`): 언어·프레임워크·데이터베이스·개발 도구 활용 경험과 의사소통·협업, 문제 해결, 요구사항 분석·설계, 데이터·서비스 연동 역량. 직접 수행한 작업과 확인된 프로젝트 사례를 중심으로 표시합니다.
 - **Projects** (`#projects`): 전체 프로젝트 목록과 GitHub 링크.
@@ -17,7 +17,7 @@
 - 동아리 홈페이지: `/#/projects/club`
 - With Pet (유기동물 입양 플랫폼): `/#/projects/adoption`
 
-상세 페이지는 개요·배경, 기간·팀 구성·역할, 기술 스택·선정 이유, 아키텍처, 주요 기능, 문제 해결, 성능·검증, 결과·회고, GitHub / Demo로 구성합니다. 목차 주소도 공유할 수 있습니다. 예: `/#/projects/raildock/architecture`.
+상세 페이지는 개요·배경, 기간·팀 구성·역할, 기술 스택·선정 이유, 아키텍처, 주요 기능, 문제 해결, 결과·회고, GitHub / 서비스로 구성합니다. 목차 주소도 공유할 수 있습니다. 예: `/#/projects/raildock/architecture`.
 
 GitHub Pages에서 새로고침과 직접 접속이 가능하도록 해시 라우팅을 사용합니다. 별도 서버 라우팅이나 404 리디렉션은 필요 없습니다. 이전 `#skills`, `#resume` 링크도 새 섹션으로 이동합니다.
 
@@ -69,7 +69,7 @@ npm run test:e2e
 | `build/resume.ts` | 루트 PDF 확인 및 Vite 배포 자산 처리 |
 | `index.html` | 제목과 검색·Open Graph 설명 |
 
-Home은 `featured: true`인 RailDock과 동아리 홈페이지를 미리보기로 표시하고, Projects에는 세 프로젝트를 모두 표시합니다. 프로젝트의 `repositories`에 `{ label, url }`을 추가하면 카드와 상세 페이지에 표시됩니다. `demo`에는 실제 공개 서비스 주소만 넣습니다. 동아리 홈페이지는 보안상 비공개 저장소이므로 `repositoryNote`로 안내합니다.
+Home은 개발자 소개와 핵심 역량을 표시하고, Projects에서 세 프로젝트를 한 번씩 소개합니다. 프로젝트의 `repositories`에 `{ label, url }`을 추가하면 카드와 상세 페이지에 표시됩니다. `demo`에는 실제 서비스 주소를 넣고, `demoLabel`과 `demoNote`로 링크 문구와 운영 상태를 안내합니다. 동아리 홈페이지 주소는 `https://www.sammaru.co.kr/`이며 AWS 비용 문제로 현재 서버가 중지된 상태이고 학교 내 컴퓨터를 활용한 자체 서버 이전을 검토하며 학교 측 답변을 기다리고 있음을 표시합니다. 보안상 비공개인 저장소는 `repositoryNote`로 안내합니다.
 
 추가 자료를 받으면 `src/data.ts`의 아래 항목을 채웁니다.
 
@@ -79,7 +79,6 @@ Home은 `featured: true`인 RailDock과 동아리 홈페이지를 미리보기�
 - `technologyNotes[].reason`: 실제 대안 비교와 기술 선정 이유. 현재는 확인된 활용 목적만 표시합니다.
 - `architecture`: 공개 가능한 구성도. 현재 그림은 기능과 담당 범위를 요약한 개념도입니다.
 - `troubleshooting`: `{ problem, solution, result }` 형태의 실제 문제 해결 사례.
-- `validation`: `{ title, description }` 형태의 측정 조건·성능 결과·검증 근거.
 
 최종 `이력서.pdf`를 기준으로 RailDock 기간 `2026.01 ~ 2026.03`, 동아리 홈페이지 기간 `2026.03 ~ 2026.05`, With Pet 기간 `2025.03 ~ 2025.11`과 개인 기여를 반영했습니다. RailDock의 이미지 크기·탐지 좌표계 차이로 인한 위치 불일치 및 좌표 변환 해결 사례도 반영했습니다. 구체적인 기술 선정 이유와 성능 수치는 제공되지 않아 추정하지 않았습니다. LLM / RAG 보고서 자동화는 설계 범위로 표시합니다. RailDock 저장소 내용은 작업 환경에서 조회하지 못해 코드 수준의 검증을 완료한 것은 아닙니다.
 

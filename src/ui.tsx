@@ -11,7 +11,8 @@ export function ExternalLink({ href, children, className = 'text-link' }: { href
 
 export function ProjectLinks({ project }: { project: Project }) {
   return <>
-    {(Boolean(project.repositories?.length) || project.demo) && <div className="project-links">{project.repositories?.map(repository => <ExternalLink key={repository.url} href={repository.url}>{repository.label}</ExternalLink>)}{project.demo && <ExternalLink href={project.demo}>Demo · 서비스 보기</ExternalLink>}</div>}
+    {(Boolean(project.repositories?.length) || project.demo) && <div className="project-links">{project.repositories?.map(repository => <ExternalLink key={repository.url} href={repository.url}>{repository.label}</ExternalLink>)}{project.demo && <ExternalLink href={project.demo}>{project.demoLabel ?? 'Demo · 서비스 보기'}</ExternalLink>}</div>}
+    {project.demoNote && <p className="repository-note">{project.demoNote}</p>}
     {project.repositoryNote && <p className="repository-note">{project.repositoryNote}</p>}
   </>
 }

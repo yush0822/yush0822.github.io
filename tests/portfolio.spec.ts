@@ -30,10 +30,11 @@ test('여섯 섹션, 프로젝트 상세 이동과 브라우저 이력', async (
   expect(errors).toEqual([])
 })
 
-test('상세 목차 직접 링크와 비공개 저장소 안내', async ({ page }) => {
+test('상세 목차 직접 링크와 서비스 운영 상태 안내', async ({ page }) => {
   await page.goto('/#/projects/club/architecture')
   await expect(page.getByRole('heading', { name: '시스템 아키텍처' })).toBeInViewport()
-  await expect(page.locator('.case-hero')).toContainText('GitHub 비공개')
+  await expect(page.locator('.case-hero').getByRole('link', { name: /서비스 주소 · 현재 서버 중지/ })).toHaveAttribute('href', 'https://www.sammaru.co.kr/')
+  await expect(page.locator('.case-hero')).toContainText('학교 측 답변을 기다리고 있습니다.')
   await expect(page.locator('.case-hero a[href^="https://github.com"]')).toHaveCount(0)
   await page.getByRole('navigation', { name: '프로젝트 상세 목차' }).getByRole('link', { name: /문제 해결/ }).click()
   await expect(page.getByRole('heading', { name: '기술적 문제와 해결 과정' })).toBeInViewport()

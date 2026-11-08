@@ -2,7 +2,6 @@ export const profile = {
   name: '유승환',
   englishName: 'Seung Hwan, YU',
   hanjaName: '柳 承 桓',
-  location: '청주시',
   email: 'yush08222@gmail.com',
   github: 'https://github.com/yush0822',
   education: '충북대학교 소프트웨어학과',
@@ -42,7 +41,6 @@ export const resumeSections = [
 export interface Project {
   id: string
   number: string
-  featured?: boolean
   name: string
   category: string
   role: string
@@ -56,6 +54,8 @@ export interface Project {
   repositories?: { label: string; url: string }[]
   repositoryNote?: string
   demo?: string
+  demoLabel?: string
+  demoNote?: string
   background: string
   sourceNote?: string
   team?: string
@@ -63,8 +63,7 @@ export interface Project {
   features?: { title: string; description: string }[]
   technologyNotes: { name: string; usage: string; reason?: string }[]
   architecture: { title: string; nodes: string[]; note?: string }[]
-  troubleshooting?: { problem: string; solution: string; result: string }[]
-  validation?: { title: string; description: string }[]
+  troubleshooting?: { problem: string; solution: string; result: string; resultLabel?: string }[]
 }
 
 // 기간·팀 규모·성과 수치·저장소 주소는 확인한 실제 정보만 추가합니다.
@@ -72,14 +71,13 @@ export const projects: Project[] = [
   {
     id: 'raildock',
     number: '01',
-    featured: true,
     name: 'RailDock',
     category: 'RAILWAY · AI PLATFORM',
     role: '설계 · 프론트엔드 개발',
     period: '2026.01 ~ 2026.03',
     subtitle: 'AI 기반 철도 유지보수 행정 자동화 플랫폼',
     background: '철도 유지보수 업무에서 AI가 탐지한 결함을 위치와 함께 확인하고 검토할 수 있도록 만드는 프로젝트입니다. 결함 위치, 탐지 영역, 분석 상태를 관리 화면에서 다루고 보고서 자동화로 이어지는 흐름을 설계했습니다.',
-    team: '설계·프론트엔드 담당 / 백엔드 팀과 역할 분담',
+    team: '7명 / 설계·프론트엔드 담당 / 백엔드 팀과 역할 분담',
     technologyNotes: [
       { name: 'React · TypeScript', usage: '유지보수 관리 화면과 결함 조회·수정 UI 개발' },
       { name: 'OpenLayers', usage: '지도 기반 결함 위치 시각화' },
@@ -113,9 +111,11 @@ export const projects: Project[] = [
   {
     id: 'club',
     number: '02',
-    featured: true,
     name: '동아리 홈페이지',
-    repositoryNote: 'GitHub 비공개 · 보안상 소스 코드 미공개',
+    repositoryNote: '',
+    demo: 'https://www.sammaru.co.kr/',
+    demoLabel: '서비스 주소 · 현재 서버 중지',
+    demoNote: 'AWS 운영 비용 문제로 현재 서버를 중지한 상태입니다. 학교 내 컴퓨터를 활용한 자체 서버로의 이전을 검토 중이며, 학교 측 답변을 기다리고 있습니다.',
     category: 'FULLSTACK · WEB SERVICE',
     role: '서비스 설계 · 풀스택 개발 (프론트엔드·백엔드·DB·배포)',
     period: '2026.03 ~ 2026.05',
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     architecture: [
       { title: '서비스 구성', nodes: ['React / TypeScript 프론트엔드', 'Spring Security 인증·인가', 'Java / Spring Boot REST API', 'MySQL 데이터베이스'] },
       { title: '접근 권한', nodes: ['USER / STAFF / ADMIN', 'Spring Security · RBAC 역할별 접근 제어'] },
-      { title: '운영 환경', nodes: ['AWS 기반 배포 구성 · DB 및 네트워크 관리'], note: '운영 환경을 요약한 개념도입니다. 상세 인프라 정보는 공개하지 않습니다.' },
+      { title: '운영 환경', nodes: ['AWS 기반 배포 구성 · DB 및 네트워크 관리'], note: '운영 환경을 요약한 개념도입니다.' },
     ],
     description: '동아리 구성원의 정보 공유와 운영 관리를 위한 통합 웹 서비스입니다. 시스템 설계부터 프론트엔드·백엔드·DB 개발 및 배포까지 전 과정을 주도했습니다.',
     stack: ['Java', 'Spring Boot', 'Spring Security', 'React', 'TypeScript', 'MySQL', 'AWS'],
@@ -142,6 +142,14 @@ export const projects: Project[] = [
       { title: 'Spring Security 인증·인가와 RBAC', description: 'Spring Security로 인증·인가를 구현하고 USER / STAFF / ADMIN으로 역할을 나누어 접근 권한을 구분했습니다.' },
       { title: 'MySQL 데이터 모델링과 데이터 처리', description: '데이터 모델링 및 테이블 관계를 설계하고, 서비스 기능과 연동되는 데이터 처리를 구현했습니다.' },
       { title: 'AWS 배포 환경 구축 및 네트워크 관리', description: '실제 서비스 운영을 위한 애플리케이션 배포 환경을 구축하고 네트워크를 관리했습니다.' },
+    ],
+    troubleshooting: [
+      {
+        problem: 'AWS 운영 비용 부담으로 인한 서비스 중지',
+        solution: 'AWS에 배포해 운영했으나 비용 부담으로 서버를 중지했습니다. 대안으로 학교 내 컴퓨터를 활용해 자체 서버를 운영하는 방안을 검토하고 있습니다.',
+        resultLabel: '현재 진행 상태',
+        result: '학교 측 답변을 기다리고 있어 자체 서버로의 이전은 아직 진행하지 못했습니다. 현재 서비스는 중지된 상태이며, 답변을 받은 뒤 이전 가능 여부와 후속 진행 방향을 결정할 예정입니다.',
+      },
     ],
     outcome: '사용자·관리자 기능, 인증·인가, MySQL 기반 데이터 처리를 갖춘 홈페이지를 개발하고 서비스 운영을 위한 배포 환경을 구성했습니다.',
     reflection: '화면과 서버뿐 아니라 DB, 네트워크, AWS 배포 구성까지 맡으며 서비스 전반을 개발하고 관리하는 경험을 쌓았습니다.',
@@ -156,10 +164,10 @@ export const projects: Project[] = [
     subtitle: '유기동물 입양 장려 AI 이미지 생성 및 매칭 플랫폼',
     description: '유기동물의 입양 후 모습을 AI 이미지로 보여주고, 개인 선호도에 맞는 품종 추천과 챗봇을 제공하는 입양 지원 플랫폼입니다. 프론트엔드 개발과 AI 서비스 연동을 담당했습니다.',
     background: '외모와 품종에 치우친 선택으로 발생하는 입양 기회의 불균형에 주목했습니다. 반려동물에 대한 개인의 선호도를 바탕으로 AI 이미지 생성과 맞춤 매칭을 제공해 입양 가능성을 높이고, 보호소의 홍보자료 제작 부담을 줄이는 것을 목표로 한 프로젝트입니다.',
-    sourceNote: '서비스 기능과 전체 시스템 구성은 2025.10.01 포스터 초안, 개발 기간과 개인 기여는 최종 이력서를 기준으로 정리했습니다.',
+    sourceNote: '',
     team: '3명 / 프론트엔드·AI 연동 담당',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Spring Boot', 'Python', 'FastAPI', 'MySQL', 'Redis', 'Docker'],
-    technologyScope: '아래는 포스터에 제시된 팀 프로젝트 전체 기술 구성입니다. 본인 담당 범위는 프론트엔드 개발과 AI 서비스 연동입니다.',
+    technologyScope: '',
     technologyNotes: [
       { name: 'React · TypeScript · Tailwind CSS', usage: '사용자 화면 구성과 유기동물 정보·AI 기능을 연결하는 프론트엔드' },
       { name: 'Spring Boot · REST API', usage: '프론트엔드, 데이터 저장소, AI 서버를 연결하는 서비스 API 계층' },
@@ -185,13 +193,20 @@ export const projects: Project[] = [
       { title: '실시간 채팅 시스템', description: '입양 지원 웹 서비스에서 사용하는 실시간 채팅 시스템을 구현했습니다.' },
       { title: 'AI 추천 서비스 연동', description: 'AI 추천 서비스를 웹 애플리케이션과 연동하는 기능을 개발했습니다.' },
     ],
-    validation: [
-      { title: '정량 성능 평가', description: '포스터 초안의 성능평가 항목은 “추가 예정”으로 남아 있습니다. 생성 시간, 추천 정확도, 입양률 등 정량 결과는 제시되지 않았습니다.' },
-      { title: '이미지 생성 시간 개선 방향', description: '포스터는 ControlNet Fine-Tuning을 통한 생성 시간 감소를 제시합니다. 전후 측정값이 없어 실제 개선 성과로 단정하지 않습니다.' },
+    troubleshooting: [
+      {
+        problem: '국가정보자원관리원 화재로 인한 공공데이터 수급 차질과 최신 정보 미반영',
+        solution: '국가정보자원관리원의 화재 사고로 공공데이터를 정상적으로 받아오지 못해 플랫폼에 최신 유기동물 정보가 반영되지 않았습니다. 이에 다른 사이트의 분양 게시글을 크롤링하여 정보를 수집하고 플랫폼에 반영하는 방식으로 임시 대응했습니다.',
+        result: '크롤링한 게시글로 공공데이터 수급 차질 기간의 정보 공백을 보완했습니다. 화재 수습 이후 공공데이터를 다시 받아올 수 있게 되면서 기존 공공데이터 기반 방식으로 복귀했습니다.',
+      },
     ],
     outcome: '개인 기여로 유기동물 정보 조회·검색, 사용자 인증, 입양 관련 기능, 실시간 채팅과 AI 추천 연동을 구현했습니다. 팀 프로젝트는 AI 이미지 생성·맞춤 품종 추천·챗봇을 통해 입양을 지원하는 서비스로 구성했습니다.',
     reflection: '공공데이터와 AI 추천 서비스를 사용자 화면에 연결하며 프론트엔드와 외부 서비스 연동을 함께 경험했습니다. 개인 선호 정보와 AI 결과를 사용자가 이해하고 활용할 수 있는 화면으로 연결하는 관점에서 서비스를 개발했습니다.',
-    repositoryNote: '공개 GitHub 링크는 아직 등록하지 않았습니다.',
+    repositories: [
+      { label: 'GitHub · 프론트엔드', url: 'https://github.com/2024-gs-capstone-design/WithPet-front' },
+      { label: 'GitHub · 백엔드', url: 'https://github.com/2024-gs-capstone-design/WithPet-backend' },
+      { label: 'GitHub · AI', url: 'https://github.com/2024-gs-capstone-design/WithPet-AI' },
+    ],
   },
 ]
 
