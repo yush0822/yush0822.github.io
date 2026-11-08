@@ -59,7 +59,7 @@ export default function HomePage() {
 
     <section id="experience" className="section-block" aria-label="Experience">
       <SectionHeading number="05" title="Experience" description="교육 · 수상 · 자격증 · 어학 · 병역" />
-      <div className="qualifications">{resumeSections.map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}><span className="resume-period mono">{item.period}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div></li>)}</ul></article>)}</div>
+      <div className="qualifications">{[['training', 'languages', 'military'], ['awards', 'certifications']].map(column => <div className="qualification-column" key={column[0]}>{column.map(id => resumeSections.find(section => section.id === id)!).map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}><span className="resume-period mono">{item.period}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div></li>)}</ul></article>)}</div>)}</div>
     </section>
     <Contact />
   </>
