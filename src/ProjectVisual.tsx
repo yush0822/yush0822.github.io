@@ -1,4 +1,11 @@
 export default function ProjectVisual({ variant }: { variant: string }) {
+  if (variant === 'adoption') return (
+    <div className="project-visual adoption-visual" role="img" aria-label="유기동물 입양 플랫폼 기능 개념도: 공공데이터 조회와 검색, AI 추천, 실시간 채팅">
+      <div className="visual-topline"><span>ADOPTION / AI SERVICE</span><span className="mini-dot" /></div>
+      <div className="adoption-window"><svg aria-hidden="true" viewBox="0 0 100 90" fill="currentColor"><ellipse cx="28" cy="27" rx="9" ry="13" transform="rotate(-25 28 27)" /><ellipse cx="50" cy="20" rx="9" ry="13" /><ellipse cx="72" cy="27" rx="9" ry="13" transform="rotate(25 72 27)" /><path d="M25 62c0-12 15-27 25-27s25 15 25 27c0 16-15 13-25 10S25 78 25 62" /></svg><p>정보를 연결하고,<br />새로운 만남을 돕다.</p><div className="adoption-features"><span>공공데이터 검색</span><span>AI 추천 연동</span><span>실시간 채팅</span></div></div>
+      <div className="visual-bottomline"><span>React · TypeScript · Python</span><span>기능 개념도</span></div>
+    </div>
+  )
   return variant === 'raildock' ? (
     <div className="project-visual rail-visual" role="img" aria-label="RailDock 개념도: 지도 위 결함 위치와 Bounding Box를 확인하고 분석 결과를 조회하는 관리 화면">
       <div className="visual-topline"><span>RAILDOCK / MAINTENANCE</span><span className="mini-dot" /></div>
@@ -13,7 +20,7 @@ export default function ProjectVisual({ variant }: { variant: string }) {
     <div className="project-visual club-visual" role="img" aria-label="동아리 홈페이지 구조 개념도: React와 Spring Boot API, Spring Security 인증·인가 및 USER, OPERATOR, ADMIN 역할 구분">
       <div className="visual-topline"><span>CLUB / WEB SERVICE</span><span className="mini-dot" /></div>
       <div className="access-window"><div className="window-dots" aria-hidden="true"><i /><i /><i /></div><p className="access-heading">역할에 맞는 접근 권한</p><div className="role-list"><span>USER</span><span>OPERATOR</span><span>ADMIN</span></div><div className="security-layer">Spring Security · 인증 / 인가</div><div className="architecture-flow"><span>React</span><span aria-hidden="true">↔</span><span>Spring Boot API</span></div></div>
-      <div className="visual-bottomline"><span>AWS · DB · Network</span><span>구조 개념도</span></div>
+      <div className="visual-bottomline"><span>AWS · MySQL · Network</span><span>구조 개념도</span></div>
     </div>
   )
 }

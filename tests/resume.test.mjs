@@ -4,7 +4,7 @@ import { mkdtemp, writeFile, readFile, access, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { basename, dirname, join, resolve } from 'node:path'
 import { build } from 'vite'
-import { readResume, resumeAsset, resumeFilename } from '../build/resume.ts'
+import { findResumePath, readResume, resumeAsset, resumeFilename } from '../build/resume.ts'
 
 async function removeFixture(root) {
   assert.equal(dirname(resolve(root)), resolve(tmpdir()))
@@ -42,5 +42,19 @@ test('PDF 확장자로 잘못 저장한 다른 형식은 빌드 전에 확인', 
   try {
     await writeFile(join(root, resumeFilename), '<html>Not a PDF</html>')
     assert.throws(() => readResume(root), /PDF 형식/)
+  } finally { await removeFixture(root) }
+})
+
+test('이력서.pdf 원본도 다운로드 파일명으로 빌드하고 표준 파일명이 있으면 우선 사용', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'portfolio-resume-'))
+  try {
+    const fixture = Buffer.from('%PDF-1.4\n% final resume filename fixture\n%%EOF\n')
+    await writeFile(join(root, 'index.html'), '<!doctype html><title>Resume test</title>')
+    await writeFile(join(root, '이력서.pdf'), fixture)
+    assert.equal(findResumePath(root), join(root, '이력서.pdf'))
+    await build({ configFile: false, root, plugins: [resumeAsset(root)], logLevel: 'silent' })
+    assert.deepEqual(await readFile(join(root, 'dist', resumeFilename)), fixture)
+    await writeFile(join(root, resumeFilename), '%PDF-1.4\n% canonical resume\n%%EOF\n')
+    assert.equal(findResumePath(root), join(root, resumeFilename))
   } finally { await removeFixture(root) }
 })

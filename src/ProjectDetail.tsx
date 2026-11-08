@@ -9,7 +9,7 @@ const sections = [
 ] as const
 
 export default function ProjectDetail({ project }: { project: Project }) {
-  const other = projects.find(item => item.id !== project.id)
+  const other = projects[(projects.findIndex(item => item.id === project.id) + 1) % projects.length]
   const sectionLink = (id: string) => `#/projects/${project.id}/${id}`
   return <article className="case-study">
     <div className="case-top"><a href="#projects" className="text-link">← 전체 프로젝트</a><span className="eyebrow">PROJECT / {project.number}</span></div>
@@ -25,7 +25,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
         <section id="case-technology"><p className="eyebrow">03 / TECHNOLOGY</p><h2>기술 스택 및 선정 이유</h2><div className="technology-table">{project.technologyNotes.map(item => <div key={item.name}><h3>{item.name}</h3><p>{item.usage}</p>{item.reason && <p className="technology-reason">선정 이유 · {item.reason}</p>}</div>)}</div>{!project.technologyNotes.some(item => item.reason) && <p className="case-note">현재는 기술별 활용 목적을 소개합니다. 대안 비교와 구체적인 선정 이유는 정리 중입니다.</p>}</section>
         <section id="case-architecture"><p className="eyebrow">04 / ARCHITECTURE</p><h2>시스템 아키텍처</h2><p className="case-note">공개 가능한 기능과 담당 범위를 중심으로 요약한 구성도입니다.</p>{project.architecture.map(flow => <figure className="architecture" key={flow.title}><figcaption>{flow.title}</figcaption><ol>{flow.nodes.map((node, i) => <li key={node}><span className="mono">0{i + 1}</span><span>{node}</span>{i < flow.nodes.length - 1 && <span className="flow-arrow" aria-hidden="true">↓</span>}</li>)}</ol>{flow.note && <p>{flow.note}</p>}</figure>)}</section>
         <section id="case-implementation"><p className="eyebrow">05 / IMPLEMENTATION</p><h2>주요 기능 및 구현 내용</h2><div className="implementation-list">{project.contributions.map((item, i) => <div key={item.title}><span className="implementation-number mono">0{i + 1}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></div>)}</div></section>
-        <section id="case-troubleshooting"><p className="eyebrow">06 / TROUBLESHOOTING</p><h2>기술적 문제와 해결 과정</h2>{project.troubleshooting?.length ? project.troubleshooting.map(item => <div className="case-record" key={item.problem}><h3>{item.problem}</h3><p>해결 과정 · {item.solution}</p><p>검증 결과 · {item.result}</p></div>) : <p className="case-note">구체적인 문제 상황, 해결 과정과 검증 근거를 정리 중입니다.</p>}</section>
+        <section id="case-troubleshooting"><p className="eyebrow">06 / TROUBLESHOOTING</p><h2>기술적 문제와 해결 과정</h2>{project.troubleshooting?.length ? project.troubleshooting.map(item => <div className="case-record" key={item.problem}><h3>{item.problem}</h3><p>해결 과정 · {item.solution}</p><p>해결 결과 · {item.result}</p></div>) : <p className="case-note">구체적인 문제 상황, 해결 과정과 검증 근거를 정리 중입니다.</p>}</section>
         <section id="case-validation"><p className="eyebrow">07 / VALIDATION</p><h2>성능 개선 및 검증 결과</h2>{project.validation?.length ? project.validation.map(item => <div className="case-record" key={item.title}><h3>{item.title}</h3><p>{item.description}</p></div>) : <p className="case-note">공개된 성능 측정 및 검증 자료는 아직 없습니다. 구현 결과는 아래에 정리했습니다.</p>}</section>
         <section id="case-reflection"><p className="eyebrow">08 / RETROSPECTIVE</p><h2>프로젝트 결과 및 회고</h2><div className="case-result"><h3>구현 결과</h3><p>{project.outcome}</p><h3>경험과 회고</h3><p>{project.reflection}</p></div></section>
         <section id="case-links"><p className="eyebrow">09 / LINKS</p><h2>GitHub / Demo</h2><ProjectLinks project={project} />{!project.demo && <p className="case-note">공개 데모는 제공하지 않습니다.</p>}</section>

@@ -3,10 +3,15 @@ import { resolve } from 'node:path'
 import type { Plugin } from 'vite'
 
 export const resumeFilename = '유승환이력서.pdf'
+export const resumeSourceFilenames = [resumeFilename, '이력서.pdf']
+
+export function findResumePath(root: string): string | undefined {
+  return resumeSourceFilenames.map(filename => resolve(root, filename)).find(path => existsSync(path))
+}
 
 export function readResume(root: string): Buffer | undefined {
-  const path = resolve(root, resumeFilename)
-  if (!existsSync(path)) return undefined
+  const path = findResumePath(root)
+  if (!path) return undefined
   const source = readFileSync(path)
   if (source.subarray(0, 5).toString() !== '%PDF-') throw new Error(`${resumeFilename} 파일이 올바른 PDF 형식이 아닙니다.`)
   return source

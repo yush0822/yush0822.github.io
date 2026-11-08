@@ -89,6 +89,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid #527b38; outline-offs
 .analysis-flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; font-size: 10px; color: #d2dfbe; }
 .analysis-flow span:nth-child(odd) { border: 1px solid #698261; border-radius: 4px; padding: 7px 10px; background: #415b3e; }
 .club-visual { color: #43504d; background: #e3e8e4; }
+.adoption-visual { color: #5f563f; background: #ece6d7; }
+.adoption-window { margin: auto 0; padding: 25px 0 15px; position: relative; }
+.adoption-window>svg { width: 60px; height: 54px; color: #918262; margin-bottom: 14px; }
+.adoption-window>p { font-size: 24px; font-weight: 600; line-height: 1.5; letter-spacing: -.04em; }
+.adoption-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.adoption-features>span { font-size: 10px; padding: 6px 8px; border: 1px solid #cdc1a7; border-radius: 4px; background: #f6f1e6; }
 .access-window { width: 100%; max-width: 310px; margin: 30px auto 20px; padding: 16px; border: 1px solid #bbc8be; border-radius: 7px; background: #f2f5ef; box-shadow: 6px 6px 0 #d2dcd1; }
 .window-dots { display: flex; gap: 4px; padding-bottom: 16px; }
 .window-dots i { width: 5px; height: 5px; background: #b2c1b4; border-radius: 50%; }
