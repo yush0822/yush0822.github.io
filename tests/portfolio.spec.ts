@@ -7,10 +7,11 @@ test('프로젝트 펼치기, 이메일 복사, 인쇄 동작과 런타임 오�
   await expect(page.getByRole('heading', { level: 1 })).toContainText('서비스의 흐름을')
   const details = page.locator('#raildock-details')
   await expect(details).toBeHidden()
+  await expect(page.getByRole('link', { name: 'GitHub · 프론트엔드' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'GitHub · 프론트엔드' })).toHaveAttribute('href', 'https://github.com/AIVLE-08-14/raildock-front')
+  await expect(page.getByRole('link', { name: 'GitHub · 백엔드 (팀 저장소)' })).toHaveAttribute('href', 'https://github.com/AIVLE-08-14/raildock-server')
   await page.getByRole('button', { name: '기여한 내용 자세히 보기' }).first().click()
   await expect(details).toBeVisible()
-  await expect(details.getByRole('link', { name: '프론트엔드 코드' })).toHaveAttribute('href', 'https://github.com/AIVLE-08-14/raildock-front')
-  await expect(details.getByRole('link', { name: '백엔드 코드 (팀 저장소)' })).toHaveAttribute('href', 'https://github.com/AIVLE-08-14/raildock-server')
   await page.getByRole('button', { name: '프로젝트 상세 접기' }).click()
   await expect(details).toBeHidden()
 

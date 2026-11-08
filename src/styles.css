@@ -104,6 +104,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #527b38; outline-offs
 .project-role { display: flex; align-items: baseline; gap: 8px; margin-top: 14px; font-size: 11px; line-height: 1.8; color: #405735; word-break: keep-all; }
 .project-role>span { flex-shrink: 0; color: #737b6b; font-size: 10px; }
 .project-links { display: flex; flex-wrap: wrap; gap: 14px 20px; margin-top: 20px; }
+.repository-note { margin-top: 20px; font-size: 11px; line-height: 1.8; color: #697460; }
 .project-description { margin: 15px 0 18px; font-size: 12px; line-height: 1.9; color: #737b6b; word-break: keep-all; }
 .tag { border: 1px solid #dfe4d6; background: #f1f4e9; padding: 4px 8px; border-radius: 4px; font-size: 9px; color: #5c6b50; }
 .details-button { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: auto; padding-top: 20px; font-size: 11px; font-weight: 600; color: #3c5534; }

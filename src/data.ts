@@ -30,10 +30,6 @@ export const resumeSections = [
     items: [{ title: 'KT AIVLE School', detail: 'AI 트랙 · KT', period: '2025.09 ~ 2026.03' }],
   },
   {
-    id: 'experience', title: '경력', label: 'EXPERIENCE',
-    items: [{ title: 'GS25 동남파라곤점', detail: '스토어 매니저', period: '2022.10 ~ 2026.11' }],
-  },
-  {
     id: 'languages', title: '어학', label: 'LANGUAGES',
     items: [{ title: 'OPic · IM1', detail: '영어 · ACTFL', period: '2026.09' }],
   },
@@ -57,6 +53,7 @@ export interface Project {
   outcome: string
   reflection: string
   repositories?: { label: string; url: string }[]
+  repositoryNote?: string
   demo?: string
 }
 
@@ -82,14 +79,15 @@ export const projects: Project[] = [
     outcome: '결함 위치 시각화, Bounding Box 조회·수정, AI 탐지 결과와 분석 상태 조회를 관리 화면으로 구현했습니다.',
     reflection: 'AI 분석 결과를 사용자가 확인하고 수정하는 화면으로 연결하고, 보고서 자동화까지 이어지는 업무 흐름을 설계했습니다.',
     repositories: [
-      { label: '프론트엔드 코드', url: 'https://github.com/AIVLE-08-14/raildock-front' },
-      { label: '백엔드 코드 (팀 저장소)', url: 'https://github.com/AIVLE-08-14/raildock-server' },
+      { label: 'GitHub · 프론트엔드', url: 'https://github.com/AIVLE-08-14/raildock-front' },
+      { label: 'GitHub · 백엔드 (팀 저장소)', url: 'https://github.com/AIVLE-08-14/raildock-server' },
     ],
   },
   {
     id: 'club',
     number: '02',
     name: '동아리 홈페이지',
+    repositoryNote: 'GitHub 비공개 · 보안상 소스 코드 미공개',
     category: 'FULLSTACK · WEB SERVICE',
     role: '설계 · 풀스택 개발 · DB 및 네트워크 관리',
     subtitle: '설계부터 배포 구성까지, 서비스 전반을 개발하다',
@@ -108,7 +106,7 @@ export const projects: Project[] = [
 ]
 
 export const skills = [
-  { number: '01', title: 'Backend & Security', label: '프로젝트 활용', technologies: ['Spring Boot', 'Spring Security', 'REST API', 'RBAC'], description: '동아리 홈페이지의 REST API와 인증·인가를 구현하고, USER / OPERATOR / ADMIN 권한을 구분했습니다.' },
+  { number: '01', title: 'Backend & Security', label: '학습 중', technologies: ['Spring Boot', 'Spring Security', 'REST API', 'RBAC'], description: '동아리 홈페이지에서 REST API와 역할별 권한 구분에 활용했습니다. Spring Boot와 Spring Security의 동작 원리와 구조는 학습 중입니다.' },
   { number: '02', title: 'Frontend & GIS', label: '프로젝트 활용', technologies: ['React', 'TypeScript', 'OpenLayers'], description: 'RailDock 관리 화면과 지도 기반 결함 위치 시각화, Bounding Box 조회·수정 UI를 개발했습니다.' },
   { number: '03', title: 'Infrastructure & Data', label: '개발 · 관리 경험', technologies: ['AWS', 'DB', 'Network'], description: '동아리 홈페이지의 DB와 네트워크를 개발·관리하고 AWS 기반 서비스 배포 환경을 구성했습니다.' },
   { number: '04', title: 'AI Workflow', label: '화면 개발 · 설계', technologies: ['AI 분석 결과 조회', 'LLM / RAG 설계'], description: 'AI 결함 탐지 결과와 분석 상태 조회 화면을 개발하고, LLM / RAG 기반 보고서 자동화를 설계했습니다.' },

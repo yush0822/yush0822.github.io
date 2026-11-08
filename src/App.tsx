@@ -45,12 +45,14 @@ function ProjectCard({ project }: { project: Project }) {
           {project.period && <p className="project-role"><span>기간</span>{project.period}</p>}
           <p className="project-description">{project.description}</p>
           <div className="flex flex-wrap gap-2" aria-label="프로젝트 기술 및 주제">{project.stack.map(tech => <span className="tag" key={tech}>{tech}</span>)}</div>
+          {(Boolean(project.repositories?.length) || project.demo) && <div className="project-links">{project.repositories?.map(repository => <ExternalLink key={repository.url} href={repository.url} className="text-link">{repository.label}</ExternalLink>)}{project.demo && <ExternalLink href={project.demo} className="text-link">서비스 보기</ExternalLink>}</div>}
+          {project.repositoryNote && <p className="repository-note">{project.repositoryNote}</p>}
           <button className="details-button" aria-expanded={expanded} aria-controls={`${project.id}-details`} onClick={() => setExpanded(!expanded)}><span>{expanded ? '프로젝트 상세 접기' : '기여한 내용 자세히 보기'}</span><span aria-hidden="true" className="text-xl">{expanded ? '−' : '+'}</span></button>
         </div>
       </div>
       <div id={`${project.id}-details`} className="project-details" data-expanded={expanded}>
         <div><h4>직접 기여한 부분</h4><div className="contributions">{project.contributions.map((item, index) => <div key={item.title}><span className="mono">0{index + 1}</span><div><h5>{item.title}</h5><p>{item.description}</p></div></div>)}</div></div>
-        <div className="project-takeaway"><h4>구현 결과와 경험</h4><p>{project.outcome}</p><p>{project.reflection}</p>{(project.repositories?.length || project.demo) && <div className="project-links">{project.repositories?.map(repository => <ExternalLink key={repository.url} href={repository.url} className="text-link">{repository.label}</ExternalLink>)}{project.demo && <ExternalLink href={project.demo} className="text-link">서비스 보기</ExternalLink>}</div>}</div>
+        <div className="project-takeaway"><h4>구현 결과와 경험</h4><p>{project.outcome}</p><p>{project.reflection}</p></div>
       </div>
     </article>
   )
@@ -105,7 +107,7 @@ export default function App() {
           <div className="hero-copy">
             <div className="availability"><span /> BACKEND & FULLSTACK DEVELOPER</div>
             <h1 id="hero-title">화면 너머,<br />서비스의 흐름을<br /><span>연결합니다.</span></h1>
-            <p className="hero-intro">안녕하세요, 개발자 <strong>{profile.name}</strong>입니다.<br />React 화면부터 Spring Boot API, AWS 배포 구성까지.<br className="desktop-break" /> 사용자 경험과 기술을 함께 고민하며 구현합니다.</p>
+            <p className="hero-intro">안녕하세요, 개발자 <strong>{profile.name}</strong>입니다.<br />서비스 설계부터 화면 개발, 배포 환경 구성까지.<br className="desktop-break" /> 전체 흐름을 이해하며 필요한 기능을 구현합니다.</p>
             <div className="hero-actions"><a href="#projects" className="button button-dark">프로젝트 살펴보기 <Arrow /></a><button onClick={() => window.print()} className="button button-outline">이력서 인쇄 / PDF <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5" /></svg></button></div>
           </div>
           <aside className="developer-card" aria-label="프로필 요약">
@@ -132,7 +134,7 @@ export default function App() {
 
         <section id="about" className="section-block about-section" aria-label="소개와 학력">
           <div><SectionHeading number="03" title="기술을 배우고, 서비스로 연결합니다" subtitle="A LITTLE ABOUT ME" /><p className="about-description">충북대학교에서 소프트웨어를 전공했습니다. 철도 유지보수 자동화 플랫폼에서는 설계와 프론트엔드를, 동아리 홈페이지에서는 프론트엔드·백엔드·DB·네트워크 개발과 관리를 맡았습니다.</p><p className="about-description">백엔드와 풀스택 개발을 목표로, 기능 하나가 사용자에게 도달하기까지의 과정을 이해하고 구현하는 개발자로 성장하고자 합니다.</p></div>
-          <div className="education"><span className="eyebrow">EDUCATION</span><div className="education-content"><span className="education-marker" /><div><span className="education-status">2020.03 ~ 2026.02 · 졸업</span><h3>충북대학교</h3><p>소프트웨어학과 · 학사</p></div></div><div className="education-content"><span className="education-marker" /><div><span className="education-status">2017.03 ~ 2020.02 · 졸업</span><h3>봉명고등학교</h3></div></div></div>
+          <div className="education"><span className="eyebrow">EDUCATION</span><div className="education-content"><span className="education-marker" /><div><span className="education-status">2020.03 ~ 2026.02 · 졸업</span><h3>충북대학교</h3><p>소프트웨어학과 · 학사</p></div></div></div>
         </section>
 
         <section id="resume" className="resume-section" aria-labelledby="resume-heading">
