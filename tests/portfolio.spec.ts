@@ -9,7 +9,7 @@ test('여섯 섹션, 프로젝트 상세 이동과 브라우저 이력', async (
   page.on('pageerror', error => errors.push(error.message))
   await page.goto('/')
   const nav = page.getByRole('navigation', { name: '주요 메뉴' })
-  for (const name of ['Home', 'About Me', 'Tech Stack', 'Projects', 'Experience', 'Contact']) {
+  for (const name of ['Home', 'About Me', '스킬 및 역량', 'Projects', 'Experience', 'Contact']) {
     await expect(nav.getByRole('link', { name, exact: true })).toBeVisible()
     await expect(page.getByRole('region', { name, exact: true })).toBeAttached()
   }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { profile, projects, resumeSections, skills, type Project } from './data'
+import { competencies, profile, projects, resumeSections, skills, type Project } from './data'
 import ProjectVisual from './ProjectVisual'
 import { Arrow, ExternalLink, ProjectLinks, ResumeDownload, SectionHeading, Tags } from './ui'
 
@@ -42,14 +42,17 @@ export default function HomePage() {
 
     <section id="about" className="section-block" aria-label="About Me">
       <SectionHeading number="02" title="About Me" description="기능을 넘어, 하나의 서비스를 이해하고 싶습니다." />
-      <div className="about-grid"><div><p className="about-lead">화면에 보이는 경험과<br />그 뒤의 구조를 함께 고민합니다.</p><p className="about-description">충북대학교에서 소프트웨어를 전공하고 KT AIVLE School에서 다양한 팀 프로젝트를 수행하며 웹 서비스 개발과 AI 기술 활용 경험을 넓혔습니다. React·TypeScript 기반 UI 구현을 바탕으로 서비스의 전체 구조와 데이터 흐름을 이해하고 설계하는 데 관심이 있습니다.</p><div className="values"><div><h3>요구사항을 직관적인 화면으로</h3><p>사용자의 요구사항을 분석하고, 이를 효율적이고 직관적인 소프트웨어로 구현하고자 합니다.</p></div><div><h3>구조와 유지보수성을 함께 고민하기</h3><p>단순한 기능 구현을 넘어 서비스 구조와 데이터 흐름을 이해하고, 유지보수성과 확장성을 고려하며 문제를 해결하고자 합니다.</p></div><div><h3>경험한 만큼 말하고, 계속 배우기</h3><p>직접 구현한 부분과 학습 중인 부분을 구분합니다. Spring Boot와 Spring Security는 프로젝트 활용 경험을 바탕으로 이해를 넓히고 있습니다.</p></div></div><p className="eyebrow interests-label">INTERESTS / 관심 분야</p><Tags items={['웹 서비스 설계', '프론트엔드 개발', '지도 기반 시각화', 'AI 서비스 활용', '백엔드 · 배포 환경']} /></div>
+      <div className="about-grid"><div><p className="about-lead">화면에 보이는 경험과<br />그 뒤의 구조를 함께 고민합니다.</p><p className="about-description">충북대학교에서 소프트웨어를 전공하고 KT AIVLE School에서 다양한 팀 프로젝트를 수행하며 웹 서비스 개발과 AI 기술 활용 경험을 넓혔습니다. React·TypeScript 기반 UI 구현을 바탕으로 서비스의 전체 구조와 데이터 흐름을 이해하고 설계하는 데 관심이 있습니다.</p><div className="values"><div><h3>요구사항을 직관적인 화면으로</h3><p>사용자의 요구사항을 분석하고, 이를 효율적이고 직관적인 소프트웨어로 구현하고자 합니다.</p></div><div><h3>구조와 유지보수성을 함께 고민하기</h3><p>단순한 기능 구현을 넘어 서비스 구조와 데이터 흐름을 이해하고, 유지보수성과 확장성을 고려하며 문제를 해결하고자 합니다.</p></div><div><h3>구현 경험을 바탕으로 설명하기</h3><p>직접 설계하고 구현한 기능을 구체적인 사례로 설명합니다. 프로젝트에서 맡은 역할과 해결한 문제를 중심으로 개발 경험을 정리합니다.</p></div></div><p className="eyebrow interests-label">INTERESTS / 관심 분야</p><Tags items={['웹 서비스 설계', '프론트엔드 개발', '지도 기반 시각화', 'AI 서비스 활용', '백엔드 · 배포 환경']} /></div>
         <aside className="about-summary"><p className="eyebrow">EDUCATION & HIGHLIGHTS</p><div className="summary-entry"><span className="resume-period mono">2020.03 ~ 2026.02</span><h3>충북대학교</h3><p>소프트웨어학과 · 학사 졸업</p></div><div className="summary-entry"><span className="resume-period mono">2025.09 ~ 2026.03</span><h3>KT AIVLE School</h3><p>AI 트랙</p></div><div className="summary-entry"><span className="resume-period mono">2026.03</span><h3>AIVLE Big Project 최우수상</h3><p>AI 기반 서비스 개발 부문</p></div><a href="#experience" className="text-link">활동과 자격 더 보기 <Arrow /></a></aside>
       </div>
     </section>
 
-    <section id="tech-stack" className="section-block" aria-label="Tech Stack">
-      <SectionHeading number="03" title="Tech Stack" description="기술 이름보다, 어디에 어떻게 활용했는지 소개합니다." />
-      <div className="tech-list"><article className="tech-row"><div><p className="eyebrow">LANGUAGES</p><h3>언어</h3><span className="skill-label">프로젝트 활용</span></div><div><Tags items={['TypeScript', 'JavaScript', 'Java', 'Python']} /><p>React·TypeScript를 중심으로 프론트엔드를 개발했습니다. 동아리 홈페이지에서는 Java·Spring Boot를 활용했고, 유기동물 입양 플랫폼에서는 Python 기반 AI 서비스 연동을 경험했습니다.</p></div></article>{skills.map(skill => <article className="tech-row" key={skill.title}><div><p className="eyebrow">{skill.number} / TECHNOLOGY</p><h3>{skill.title}</h3><span className={skill.label === '학습 중' ? 'skill-label learning' : 'skill-label'}>{skill.label}</span></div><div><Tags items={skill.technologies} /><p>{skill.description}</p></div></article>)}</div>
+    <section id="tech-stack" className="section-block" aria-label="스킬 및 역량">
+      <SectionHeading number="03" title="스킬 및 역량" description="어떤 기술을 어떻게 활용하고, 함께 문제를 해결하는지 소개합니다." />
+      <div className="capability-heading"><p className="eyebrow">TECHNICAL SKILLS</p><h3>언어 · 프로그램 활용</h3></div>
+      <div className="technical-skills">{skills.map(skill => <article className="technical-skill" key={skill.title}><div className="skill-card-top"><span className="mono">{skill.number}</span><span className="skill-label">{skill.label}</span></div><h4>{skill.title}</h4><Tags items={skill.technologies} /><p>{skill.description}</p></article>)}</div>
+      <div className="capability-heading competency-heading"><p className="eyebrow">DEVELOPER COMPETENCIES</p><h3>개발자로서의 역량</h3></div>
+      <div className="competency-list">{competencies.map(item => <article className="competency-row" key={item.title}><div className="competency-title"><span className="mono">{item.number}</span><h4>{item.title}</h4></div><div><p>{item.description}</p><a href={item.href} className="text-link">{item.linkLabel} <Arrow /></a></div></article>)}</div>
     </section>
 
     <section id="projects" className="section-block" aria-label="Projects">
@@ -59,7 +62,7 @@ export default function HomePage() {
 
     <section id="experience" className="section-block" aria-label="Experience">
       <SectionHeading number="05" title="Experience" description="교육 · 수상 · 자격증 · 어학 · 병역" />
-      <div className="qualifications">{[['training', 'languages', 'military'], ['awards', 'certifications']].map(column => <div className="qualification-column" key={column[0]}>{column.map(id => resumeSections.find(section => section.id === id)!).map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}><span className="resume-period mono">{item.period}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div></li>)}</ul></article>)}</div>)}</div>
+      <div className="qualifications">{[['certifications', 'training'], ['awards', 'languages', 'military']].map(column => <div className="qualification-column" key={column[0]}>{column.map(id => resumeSections.find(section => section.id === id)!).map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}><span className="resume-period mono">{item.period}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div></li>)}</ul></article>)}</div>)}</div>
     </section>
     <Contact />
   </>

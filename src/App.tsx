@@ -6,7 +6,7 @@ import { Arrow } from './ui'
 
 const navigation = [
   { id: 'home', label: 'Home' }, { id: 'about', label: 'About Me' },
-  { id: 'tech-stack', label: 'Tech Stack' }, { id: 'projects', label: 'Projects' },
+  { id: 'tech-stack', label: '스킬 및 역량' }, { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' }, { id: 'contact', label: 'Contact' },
 ]
 
@@ -27,7 +27,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    document.title = project ? `${project.name} | 유승환 포트폴리오` : detailRoute ? '페이지를 찾을 수 없습니다 | 유승환' : '유승환 | 설계부터 배포까지, 개발 포트폴리오'
+    document.title = project ? `${project.name} | 유승환 포트폴리오` : detailRoute ? '페이지를 찾을 수 없습니다 | 유승환' : '유승환 | 포트폴리오'
     const aliases: Record<string, string> = { skills: 'tech-stack', resume: 'experience' }
     const targetId = project ? (parts[2] ? `case-${parts[2]}` : 'page-title') : detailRoute ? 'page-title' : aliases[hash.slice(1)] ?? (hash.slice(1) || 'home')
     const target = document.getElementById(targetId) ?? document.getElementById('page-title')

@@ -1,8 +1,8 @@
 export default function ProjectVisual({ variant }: { variant: string }) {
   if (variant === 'adoption') return (
-    <div className="project-visual adoption-visual" role="img" aria-label="유기동물 입양 플랫폼 기능 개념도: 공공데이터 조회와 검색, AI 추천, 실시간 채팅">
-      <div className="visual-topline"><span>ADOPTION / AI SERVICE</span><span className="mini-dot" /></div>
-      <div className="adoption-window"><svg aria-hidden="true" viewBox="0 0 100 90" fill="currentColor"><ellipse cx="28" cy="27" rx="9" ry="13" transform="rotate(-25 28 27)" /><ellipse cx="50" cy="20" rx="9" ry="13" /><ellipse cx="72" cy="27" rx="9" ry="13" transform="rotate(25 72 27)" /><path d="M25 62c0-12 15-27 25-27s25 15 25 27c0 16-15 13-25 10S25 78 25 62" /></svg><p>정보를 연결하고,<br />새로운 만남을 돕다.</p><div className="adoption-features"><span>공공데이터 검색</span><span>AI 추천 연동</span><span>실시간 채팅</span></div></div>
+    <div className="project-visual adoption-visual" role="img" aria-label="With Pet 기능 개념도: AI 이미지 생성, 맞춤 품종 추천, 반려동물 정보 챗봇">
+      <div className="visual-topline"><span>WITH PET / AI SERVICE</span><span className="mini-dot" /></div>
+      <div className="adoption-window"><svg aria-hidden="true" viewBox="0 0 100 90" fill="currentColor"><ellipse cx="28" cy="27" rx="9" ry="13" transform="rotate(-25 28 27)" /><ellipse cx="50" cy="20" rx="9" ry="13" /><ellipse cx="72" cy="27" rx="9" ry="13" transform="rotate(25 72 27)" /><path d="M25 62c0-12 15-27 25-27s25 15 25 27c0 16-15 13-25 10S25 78 25 62" /></svg><p>함께할 모습을 그리고,<br />새로운 만남을 잇다.</p><div className="adoption-features"><span>AI 이미지 생성</span><span>맞춤 품종 추천</span><span>반려동물 챗봇</span></div></div>
       <div className="visual-bottomline"><span>React · TypeScript · Python</span><span>기능 개념도</span></div>
     </div>
   )
