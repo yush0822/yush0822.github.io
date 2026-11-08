@@ -354,20 +354,14 @@ main:focus, #page-title:focus { outline: none; }
 .project-links { gap: 12px 18px; }
 .project-detail-link { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #dce0d3; padding-top: 18px; margin-top: 24px; font-size: 13px; font-weight: 600; color: #405735; }
 .project-detail-link:hover { color: #718a40; }
-.experience-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; }
-.activity-timeline { padding-left: 24px; border-left: 1px solid #cbd4bd; }
-.activity-timeline article { position: relative; padding-bottom: 44px; }
-.activity-timeline article::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #81965f; position: absolute; top: 3px; left: -29px; border: 2px solid #f5f5ef; }
-.activity-timeline h3 { margin-block: 14px; font-size: 22px; letter-spacing: -.04em; font-weight: 600; }
-.activity-timeline p:not(.eyebrow) { color: #697460; line-height: 1.9; font-size: 14px; word-break: keep-all; }
-.activity-timeline .text-link { margin-top: 18px; }
-.qualifications { display: grid; gap: 26px; align-content: start; }
-.qualification { display: grid; grid-template-columns: 65px 1fr; gap: 18px; padding-bottom: 24px; border-bottom: 1px solid #d7dccf; }
-.qualification>h3 { font-size: 14px; font-weight: 600; }
-.qualification ul { display: grid; gap: 20px; }
+.qualifications { display: grid; gap: 24px; }
+.qualification { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px; padding-bottom: 24px; border-bottom: 1px solid #d7dccf; }
+.qualification>h3 { font-size: 15px; font-weight: 600; }
+.qualification ul { display: grid; gap: 16px; }
+.qualification li { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; }
 .qualification h4 { font-size: 13px; line-height: 1.8; font-weight: 600; word-break: keep-all; }
 .qualification p { font-size: 11px; line-height: 1.8; color: #697460; margin-top: 4px; }
-.qualification .resume-period { display: block; }
+.qualification .resume-period { display: block; padding-top: 4px; margin-bottom: 0; }
 .contact-block { padding-bottom: 28px; }
 .contact-section h3 { font-size: 31px; line-height: 1.5; letter-spacing: -.04em; font-weight: 650; margin: 14px 0; }
 .contact-section h3 span { color: #b9d692; }
@@ -420,7 +414,6 @@ main:focus, #page-title:focus { outline: none; }
 @media (max-width: 1050px) {
   .site-nav { gap: 20px; font-size: 12px; }
   .about-grid { gap: 40px; }
-  .experience-layout { gap: 40px; }
   .case-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 30px; }
   .case-hero { gap: 30px; }
 }
@@ -435,7 +428,7 @@ main:focus, #page-title:focus { outline: none; }
   .strengths>div { padding: 0 0 20px; border-right: 0; border-bottom: 1px solid #d7dccf; }
   .strengths>div:last-child { padding: 0; }
   .strengths h2 { margin-top: 8px; }
-  .featured-grid, .about-grid, .projects-grid, .experience-layout { grid-template-columns: 1fr; }
+  .featured-grid, .about-grid, .projects-grid { grid-template-columns: 1fr; }
   .featured-project { padding: 18px; gap: 14px; }
   .featured-heading { align-items: flex-start; }
   .featured-heading .eyebrow { font-size: 9px; }
@@ -447,7 +440,8 @@ main:focus, #page-title:focus { outline: none; }
   .projects-intro { flex-direction: column; gap: 8px; }
   .project-copy { padding: 18px 22px 22px; }
   .projects-grid .project-visual { min-height: 285px; }
-  .experience-layout { gap: 20px; }
+  .qualification { grid-template-columns: 1fr; gap: 14px; }
+  .qualification li { grid-template-columns: 1fr; gap: 5px; }
   .contact-section h3 { font-size: 27px; }
   .case-hero { grid-template-columns: 1fr; gap: 30px; padding-top: 10px; }
   .case-hero h1 { font-size: 40px; }
@@ -467,7 +461,8 @@ main:focus, #page-title:focus { outline: none; }
   .section-block { padding-top: 24px; }
   .section-heading { padding-top: 14px; margin-bottom: 18px; }
   .section-heading h2 { font-size: 20pt; }
-  .about-grid, .experience-layout { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .qualification { break-inside: avoid; }
   .strengths { padding-block: 14px; }
   .strengths p { color: #333; }
   .projects-grid { grid-template-columns: 1fr; gap: 20px; }

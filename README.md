@@ -8,7 +8,7 @@
 - **About Me** (`#about`): 개발 가치관, 관심 분야, 학력 및 주요 활동.
 - **Tech Stack** (`#tech-stack`): 언어·프레임워크·DB·인프라의 활용 경험. Spring Boot / Spring Security는 학습 중임을 표시합니다.
 - **Projects** (`#projects`): 전체 프로젝트 목록과 GitHub 링크.
-- **Experience** (`#experience`): 교육, 팀 프로젝트, 기타 개발 활동, 수상·자격·어학·병역.
+- **Experience** (`#experience`): 교육·수상·자격증·어학·병역을 간결한 이력 목록으로 표시.
 - **Contact** (`#contact`): 이메일, GitHub, 이력서 PDF 다운로드.
 
 프로젝트 상세 페이지:

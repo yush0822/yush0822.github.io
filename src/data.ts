@@ -11,6 +11,10 @@ export const profile = {
 
 export const resumeSections = [
   {
+    id: 'training', title: '교육', label: 'TRAINING',
+    items: [{ title: 'KT AIVLE School', detail: 'AI 트랙 · KT', period: '2025.09 ~ 2026.03' }],
+  },
+  {
     id: 'awards', title: '수상', label: 'AWARDS',
     items: [
       { title: 'AIVLE Big Project 최우수상', detail: 'AI 기반 서비스 개발 부문 · KT, 고용노동부', period: '2026.03' },
@@ -24,10 +28,6 @@ export const resumeSections = [
       { title: 'SQLD', detail: 'SQL 개발자', period: '2026.06' },
       { title: 'ADsP', detail: '데이터 분석 준전문가', period: '2026.09' },
     ],
-  },
-  {
-    id: 'training', title: '교육 · 연수', label: 'TRAINING',
-    items: [{ title: 'KT AIVLE School', detail: 'AI 트랙 · KT', period: '2025.09 ~ 2026.03' }],
   },
   {
     id: 'languages', title: '어학', label: 'LANGUAGES',

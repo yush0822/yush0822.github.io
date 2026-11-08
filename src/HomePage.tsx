@@ -58,10 +58,8 @@ export default function HomePage() {
     </section>
 
     <section id="experience" className="section-block" aria-label="Experience">
-      <SectionHeading number="05" title="Experience" description="교육과 협업, 프로젝트 밖에서도 이어지는 배움." />
-      <div className="experience-layout"><div className="activity-timeline"><article><p className="eyebrow">EDUCATION / 2025.09 — 2026.03</p><h3>KT AIVLE School · AI 트랙</h3><p>KT AIVLE School AI 트랙 교육에 참여했습니다.</p></article><article><p className="eyebrow">COLLABORATION / TEAM PROJECT</p><h3>RailDock 팀 프로젝트</h3><p>설계와 프론트엔드를 맡아 AI 분석 결과를 확인하는 관리 화면을 개발했습니다. 백엔드와 역할을 나누어 서비스 개발에 참여했습니다.</p><a href="#/projects/raildock" className="text-link">담당 역할 살펴보기 <Arrow /></a></article><article><p className="eyebrow">DEVELOPMENT / PERSONAL WEBSITE</p><h3>포트폴리오 사이트 구성</h3><p>프로젝트 경험을 정리하는 React·TypeScript 포트폴리오입니다. GitHub Pages를 통해 배포하고 개발 기록을 계속 보완합니다.</p><ExternalLink href="https://github.com/yush0822/yush0822.github.io">포트폴리오 GitHub</ExternalLink></article></div>
-        <div className="qualifications">{resumeSections.filter(section => section.id !== 'training').map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}>{item.period && <span className="resume-period mono">{item.period}</span>}<h4>{item.title}</h4><p>{item.detail}</p></li>)}</ul></article>)}</div>
-      </div>
+      <SectionHeading number="05" title="Experience" description="교육 · 수상 · 자격증 · 어학 · 병역" />
+      <div className="qualifications">{resumeSections.map(section => <article className="qualification" key={section.id}><h3>{section.title}</h3><ul>{section.items.map(item => <li key={item.title}><span className="resume-period mono">{item.period}</span><div><h4>{item.title}</h4><p>{item.detail}</p></div></li>)}</ul></article>)}</div>
     </section>
     <Contact />
   </>
