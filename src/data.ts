@@ -55,6 +55,12 @@ export interface Project {
   repositories?: { label: string; url: string }[]
   repositoryNote?: string
   demo?: string
+  background: string
+  team?: string
+  technologyNotes: { name: string; usage: string; reason?: string }[]
+  architecture: { title: string; nodes: string[]; note?: string }[]
+  troubleshooting?: { problem: string; solution: string; result: string }[]
+  validation?: { title: string; description: string }[]
 }
 
 // 기간·팀 규모·성과 수치·저장소 주소는 확인한 실제 정보만 추가합니다.
@@ -67,6 +73,17 @@ export const projects: Project[] = [
     role: '설계 · 프론트엔드 개발',
     period: '2026.01 ~ 2026.03',
     subtitle: '철도 유지보수 자동화 플랫폼',
+    background: '철도 유지보수 업무에서 AI가 탐지한 결함을 위치와 함께 확인하고 검토할 수 있도록 만드는 프로젝트입니다. 결함 위치, 탐지 영역, 분석 상태를 관리 화면에서 다루고 보고서 자동화로 이어지는 흐름을 설계했습니다.',
+    team: '설계·프론트엔드 담당 / 백엔드 팀과 역할 분담',
+    technologyNotes: [
+      { name: 'React · TypeScript', usage: '유지보수 관리 화면과 결함 조회·수정 UI 개발' },
+      { name: 'OpenLayers', usage: '지도 기반 결함 위치 시각화' },
+      { name: 'LLM · RAG', usage: '유지보수 보고서 자동화 방식 설계' },
+    ],
+    architecture: [
+      { title: '분석 결과 활용', nodes: ['AI 결함 탐지 결과 · 분석 상태', 'React / TypeScript 관리 화면', 'OpenLayers 위치 확인 · Bounding Box 조회·수정'] },
+      { title: '보고서 자동화 구상', nodes: ['유지보수 정보', 'LLM / RAG 활용', '보고서 자동화'], note: '보고서 자동화는 설계 범위입니다.' },
+    ],
     description: 'AI 결함 탐지 결과와 분석 상태를 확인하고, 지도에서 결함 위치를 살펴보는 관리 플랫폼입니다. 서비스 설계와 프론트엔드 개발을 담당했습니다.',
     stack: ['React', 'TypeScript', 'OpenLayers', 'Bounding Box', 'LLM / RAG 설계'],
     contributions: [
@@ -91,6 +108,18 @@ export const projects: Project[] = [
     category: 'FULLSTACK · WEB SERVICE',
     role: '설계 · 풀스택 개발 · DB 및 네트워크 관리',
     subtitle: '설계부터 배포 구성까지, 서비스 전반을 개발하다',
+    background: '학교 동아리 홈페이지를 만들고 관리하는 프로젝트입니다. 화면과 API, 데이터베이스, 네트워크, 배포 환경을 함께 구성하고, 사용자 역할에 따라 서비스 접근 권한을 구분했습니다.',
+    technologyNotes: [
+      { name: 'React', usage: '동아리 홈페이지 프론트엔드 개발' },
+      { name: 'Spring Boot', usage: '프론트엔드와 연결되는 REST API 개발' },
+      { name: 'Spring Security · RBAC', usage: '인증·인가와 USER / OPERATOR / ADMIN 역할 구분' },
+      { name: 'AWS', usage: '서비스 배포 환경 구성' },
+    ],
+    architecture: [
+      { title: '서비스 구성', nodes: ['React 프론트엔드', 'Spring Security 인증·인가', 'Spring Boot REST API', '데이터베이스'] },
+      { title: '접근 권한', nodes: ['USER / OPERATOR / ADMIN', 'Spring Security · RBAC 역할별 접근 제어'] },
+      { title: '운영 환경', nodes: ['AWS 기반 배포 구성 · DB 및 네트워크 관리'], note: '운영 환경을 요약한 개념도입니다. 상세 인프라 정보는 공개하지 않습니다.' },
+    ],
     description: '학교 동아리 홈페이지의 설계, 프론트엔드, 백엔드, DB, 네트워크를 전반적으로 개발·관리했습니다. RBAC를 적용해 사용자 역할에 따라 권한을 구분했습니다.',
     stack: ['React', 'Spring Boot', 'Spring Security', 'RBAC', 'AWS'],
     contributions: [

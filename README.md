@@ -1,78 +1,89 @@
-# 유승환 | 백엔드 · 풀스택 개발 포트폴리오
+# 유승환 | 개발 포트폴리오
 
-충북대학교 소프트웨어학과 졸업생의 취업용 포트폴리오입니다. 기존 HTML 페이지의 프로젝트 정보를 바탕으로 React + TypeScript + Tailwind CSS + Vite로 개편했습니다.
+서비스 설계부터 화면 개발, 배포 환경 구성까지의 경험을 소개하는 React + TypeScript + Tailwind CSS + Vite 포트폴리오입니다.
 
-## 로컬 실행
+## 사이트 구조
 
-Node.js 22.12 이상이 필요합니다. CI에서는 Node.js 22를 사용합니다.
+- **Home** (`#home`): 개발자 소개, 핵심 역량, 대표 프로젝트 미리보기.
+- **About Me** (`#about`): 개발 가치관, 관심 분야, 학력 및 주요 활동.
+- **Tech Stack** (`#tech-stack`): 언어·프레임워크·DB·인프라의 활용 경험. Spring Boot / Spring Security는 학습 중임을 표시합니다.
+- **Projects** (`#projects`): 전체 프로젝트 목록과 GitHub 링크.
+- **Experience** (`#experience`): 교육, 팀 프로젝트, 기타 개발 활동, 수상·자격·어학·병역.
+- **Contact** (`#contact`): 이메일, GitHub, 이력서 PDF 다운로드.
+
+프로젝트 상세 페이지:
+
+- RailDock: `/#/projects/raildock`
+- 동아리 홈페이지: `/#/projects/club`
+
+상세 페이지는 개요·배경, 기간·팀 구성·역할, 기술 스택·선정 이유, 아키텍처, 주요 기능, 문제 해결, 성능·검증, 결과·회고, GitHub / Demo로 구성합니다. 목차 주소도 공유할 수 있습니다. 예: `/#/projects/raildock/architecture`.
+
+GitHub Pages에서 새로고침과 직접 접속이 가능하도록 해시 라우팅을 사용합니다. 별도 서버 라우팅이나 404 리디렉션은 필요 없습니다. 이전 `#skills`, `#resume` 링크도 새 섹션으로 이동합니다.
+
+## 로컬 실행과 검증
+
+Node.js 22.12 이상을 사용합니다.
 
 ```sh
 npm ci
 npm run dev
+npm run build
+npm run test:resume
+npm run test:e2e
 ```
 
-- 개발 서버: 터미널에 표시되는 주소(기본 `http://127.0.0.1:5173`)
-- 타입 검사 및 정적 빌드: `npm run build`
-- 빌드 결과 확인: `npm run preview`
-- 브라우저 테스트: `npm run test:e2e` (Microsoft Edge 설치 필요, 먼저 빌드)
+- 개발 서버: 출력된 주소(기본 `http://127.0.0.1:5173`).
+- `build`: 타입 검사 및 정적 빌드, 루트 이력서 PDF가 있으면 배포 파일에 포함.
+- `test:resume`: PDF 없음·추가·잘못된 형식에 대한 격리된 빌드 테스트. 실제 이력서 파일은 변경하지 않습니다.
+- `test:e2e`: 빌드 후 실행. Microsoft Edge가 필요합니다. 메인·상세 이동, 직접 링크·새로고침·뒤로 가기, 모바일 메뉴, 이메일 복사, PDF 상태, 화면 넘침 등을 검증합니다.
+- Windows PowerShell에서 실행 정책 때문에 `npm`이 차단되면 `npm.cmd`를 사용합니다.
 
-## GitHub Pages 배포
+## 이력서 PDF 추가
 
-대상 주소: https://yush0822.github.io/
+**이 README 및 package.json과 같은 저장소 루트 폴더**에 다음 이름으로 파일을 추가합니다.
 
-1. GitHub 저장소 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 설정합니다.
-2. 변경 파일과 `package-lock.json`을 `main`에 커밋·푸시합니다.
-3. **Actions → Deploy portfolio to GitHub Pages**의 성공 여부를 확인합니다.
+```text
+유승환이력서.pdf
+```
 
-워크플로는 `npm ci` → 타입 검사·Vite 빌드 → `dist` 배포를 수행합니다. PR에서는 빌드만 검증하고 배포하지 않습니다. 이 저장소는 사용자 사이트이므로 Vite의 `base`는 `/`입니다. 섹션 이동은 해시 앵커를 사용해 별도 서버 라우팅이 필요 없습니다. 기존 Jekyll `_config.yml`은 제거했습니다.
+1. 루트 폴더에 실제 PDF를 넣습니다.
+2. `npm run build`로 확인합니다. 개발 서버를 사용 중이라면 재시작합니다.
+3. PDF를 커밋·푸시하면 GitHub Actions의 다음 빌드에서 자동으로 배포에 포함됩니다.
 
-설정 근거: [Vite GitHub Pages 배포 문서](https://vite.dev/guide/static-deploy.html#github-pages), [GitHub Pages 사용자 지정 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [Tailwind CSS Vite 통합](https://tailwindcss.com/docs/installation/using-vite).
+`build/resume.ts`가 해당 파일을 `dist/유승환이력서.pdf`로 포함하고 다운로드 버튼을 활성화합니다. 다운로드 URL은 `/유승환이력서.pdf`입니다. 파일이 없으면 링크 대신 비활성화된 ‘이력서 PDF 준비 중’ 버튼을 표시합니다. 브라우저 인쇄로 생성한 페이지를 이력서 파일로 대체하지 않습니다.
 
-## 수정 위치
+## 콘텐츠 수정 위치
 
 | 파일 | 내용 |
 | --- | --- |
-| `src/data.ts` | 공개 프로필, 프로젝트, 기술 경험, 수상·자격증·교육·어학·병역 |
-| `src/App.tsx` | 화면 구성, 프로젝트 펼치기, 모바일 메뉴, 이메일 복사 |
-| `src/styles.css` | Tailwind CSS, 반응형 스타일, 인쇄 레이아웃 |
-| `index.html` | 제목, 검색 설명, Open Graph 메타데이터 |
-| `.github/workflows/deploy.yml` | GitHub Pages 자동 빌드·배포 |
-| `tests/portfolio.spec.ts` | 화면 크기별 넘침, 메뉴, 상세 보기, 클립보드, 인쇄 검사 |
+| `src/data.ts` | 공개 프로필, 프로젝트 상세 데이터, 기술 경험, 수상·자격·교육·어학·병역 |
+| `src/HomePage.tsx` | 메인 여섯 섹션, 프로젝트 카드, 이메일 복사 |
+| `src/ProjectDetail.tsx` | 프로젝트 상세 페이지와 목차 |
+| `src/ProjectVisual.tsx` | 실제 화면과 구분되는 기능 개념도 |
+| `src/App.tsx` | 내비게이션, 해시 라우팅, 페이지 제목, 포커스와 스크롤 처리 |
+| `src/ui.tsx` | 링크, 기술 태그, PDF 다운로드 등 공통 UI |
+| `src/styles.css` | 반응형 스타일과 인쇄 레이아웃 |
+| `build/resume.ts` | 루트 PDF 확인 및 Vite 배포 자산 처리 |
+| `index.html` | 제목과 검색·Open Graph 설명 |
 
-프로젝트의 `repositories`에 `{ label, url }` 목록을, `demo`에 서비스 URL을 넣으면 프로젝트 카드에 링크가 항상 표시됩니다. RailDock은 제공된 프론트엔드·백엔드 저장소를 연결했으며 백엔드는 팀 저장소로 표시합니다. 동아리 홈페이지는 보안상 비공개 저장소로 관리하므로 링크 대신 비공개 안내를 표시합니다. 프로젝트 그림은 담당 영역과 데이터 흐름을 설명하는 **개념도**이며 실제 서비스 화면이 아닙니다.
+프로젝트의 `repositories`에 `{ label, url }`을 추가하면 카드와 상세 페이지에 표시됩니다. `demo`에는 실제 공개 서비스 주소만 넣습니다. 동아리 홈페이지는 보안상 비공개 저장소이므로 `repositoryNote`로 안내합니다.
 
-‘이력서 인쇄 / PDF’는 브라우저 인쇄 창을 엽니다. PDF로 저장을 선택하면 됩니다. 인쇄 시 모든 프로젝트 상세 내용을 펼치고 메뉴와 장식 이미지는 숨깁니다. 현재 구성은 상세 포트폴리오 출력이며, 한 장짜리 이력서가 필요하면 별도 요약본으로 편집하는 편이 좋습니다.
+추가 자료를 받으면 `src/data.ts`의 아래 항목을 채웁니다.
 
-## 이력 정보
+- `period`, `team`: 확인된 개발 기간과 팀 구성.
+- `technologyNotes[].reason`: 실제 대안 비교와 기술 선정 이유. 현재는 확인된 활용 목적만 표시합니다.
+- `architecture`: 공개 가능한 구성도. 현재 그림은 기능과 담당 범위를 요약한 개념도입니다.
+- `troubleshooting`: `{ problem, solution, result }` 형태의 실제 문제 해결 사례.
+- `validation`: `{ title, description }` 형태의 측정 조건·성능 결과·검증 근거.
 
-영문 이름은 `Seung Hwan, YU`, 한자는 `柳 承 桓`으로 표기합니다. 제공된 학력 기간과 수상·교육·어학·병역을 반영했으며, SQLD·ADsP·정보처리기사는 취득일 정보 없이 보유 자격으로 표시합니다. 공개 연락처는 이메일·GitHub이며 거주 지역은 청주시까지만 표시합니다.
+현재 RailDock 기간은 `2026.01 ~ 2026.03`입니다. 팀 인원, 동아리 홈페이지 개발 기간, 구체적인 기술 선정 이유, 문제 해결 사례와 성능 수치는 제공되지 않아 추정하지 않았습니다. LLM / RAG 보고서 자동화는 설계 범위로 표시합니다. RailDock 저장소 내용은 작업 환경에서 조회하지 못해 코드 수준의 검증을 완료한 것은 아닙니다.
 
-최종 학력은 충북대학교 소프트웨어학과 학사 졸업입니다. 원본 이력서의 ‘대학원 재학 중’은 잘못 들어간 문구로 확인했습니다. RailDock 개발 기간은 확인된 `2026.01 ~ 2026.03`으로 표시합니다. 수상 내역은 특정 프로젝트와의 관계가 확인되기 전까지 독립된 이력으로 표시합니다.
+## 공개 정보
 
-## 대표 프로젝트
+영문 이름은 `Seung Hwan, YU`, 한자는 `柳 承 桓`입니다. 충북대학교 소프트웨어학과 학사 졸업을 표시하며, 연락처는 이메일·GitHub, 거주 지역은 청주시까지만 공개합니다. 경력과 고등학교 이력은 표시하지 않습니다. SQLD·ADsP·정보처리기사는 취득일 없이 보유 자격으로 표시합니다. 수상 내역은 특정 프로젝트와의 관계가 확인되기 전까지 독립된 활동 이력으로 둡니다.
 
-- **RailDock:** 철도 유지보수 자동화 플랫폼. 본인 역할은 설계와 프론트엔드 개발이며, React / TypeScript 관리 화면, OpenLayers 결함 위치 시각화, Bounding Box 조회·수정 UI, AI 탐지 결과 및 분석 상태 조회를 소개합니다. LLM / RAG 보고서 자동화는 설계 범위로 표기합니다.
-- **동아리 홈페이지:** 설계부터 React 프론트엔드, Spring Boot REST API, DB 및 네트워크 개발·관리, AWS 배포 구성까지 담당한 프로젝트입니다. Spring Security 인증·인가와 USER / OPERATOR / ADMIN 기반 RBAC를 소개합니다.
+## GitHub Pages 배포
 
-내용은 사용자가 제공한 역할과 기능을 기준으로 작성했습니다. RailDock 저장소 내용은 이번 작업 환경에서 조회하지 못했으므로 코드 수준의 검증을 완료한 것은 아닙니다. 동아리 홈페이지 개발 기간, 팀 규모, 성과 수치, 구체적인 DB 제품과 AWS 서비스는 확인 전까지 기재하지 않습니다.
+대상: https://yush0822.github.io/
 
-### 추가할 수 있는 자료
-
-- 동아리 이름과 공개 가능한 서비스 주소, 각 프로젝트의 실제 화면과 시연 자료. 동아리 저장소는 비공개 상태를 유지합니다.
-- 동아리 홈페이지 개발 기간과 각 프로젝트 팀 규모, 직접 작성한 코드·PR 및 설계 자료.
-- RailDock의 지도·Bounding Box UI 구현 사례와 보고서 자동화 설계도.
-- 동아리 홈페이지의 역할별 권한표, API 명세, ERD와 배포 구성도.
-- 실제 문제 해결 사례와 테스트·측정 결과. 수치를 추가할 때는 측정 조건과 방법도 함께 기록합니다.
-
-### 프로젝트 상세 작성 틀
-
-각 대표 프로젝트에 아래 내용을 실제 근거와 함께 1~2개씩만 채워도 설득력이 높아집니다.
-
-1. **상황:** 어떤 사용자 또는 기술적 문제가 있었는가?
-2. **제약:** 시간, 인프라, API, 모델, 팀 구성에 어떤 제약이 있었는가?
-3. **판단:** 어떤 대안을 비교했고 왜 이 방식을 골랐는가?
-4. **구현:** 내가 변경한 코드·설계와 직접 맡은 범위는 무엇인가?
-5. **검증:** 테스트·로그·측정·시연으로 무엇을 확인했는가?
-6. **회고:** 남은 한계와 다음 개선은 무엇인가?
-
-예: ‘결함 분석 결과 조회에서 **[실제 문제]** 발생 → **[비교한 대안]** 검토 → **[선택 이유]**로 **[직접 구현]** → **[측정 조건]**에서 **[결과]** 확인.’ 대괄호는 작성 안내이며 공개 페이지에 넣을 성과가 아닙니다.
+GitHub 저장소의 **Settings → Pages → Source**를 **GitHub Actions**로 설정합니다. `main`에 커밋·푸시하면 `.github/workflows/deploy.yml`이 `npm ci` → 타입 검사·Vite 빌드 → `dist` 배포를 수행합니다. PR에서는 빌드만 검증합니다.
