@@ -1,65 +1,115 @@
 export const profile = {
   name: '유승환',
-  englishName: 'YOO SEUNGHWAN',
+  englishName: 'Seung Hwan, YU',
+  hanjaName: '柳 承 桓',
+  location: '청주시',
   email: 'yush08222@gmail.com',
   github: 'https://github.com/yush0822',
   education: '충북대학교 소프트웨어학과',
   role: '백엔드 / 풀스택 개발',
 }
 
+export const resumeSections = [
+  {
+    id: 'awards', title: '수상', label: 'AWARDS',
+    items: [
+      { title: 'AIVLE Big Project 최우수상', detail: 'AI 기반 서비스 개발 부문 · KT, 고용노동부', period: '2026.03' },
+      { title: '2024 스마트&디지털페스티벌 장려상', detail: '충북과학기술혁신원', period: '2024.12' },
+    ],
+  },
+  {
+    id: 'certifications', title: '자격증', label: 'CERTIFICATIONS',
+    items: [
+      { title: '정보처리기사', detail: '보유', period: '' },
+      { title: 'SQLD', detail: '보유', period: '' },
+      { title: 'ADsP', detail: '보유', period: '' },
+    ],
+  },
+  {
+    id: 'training', title: '교육 · 연수', label: 'TRAINING',
+    items: [{ title: 'KT AIVLE School', detail: 'AI 트랙 · KT', period: '2025.09 ~ 2026.03' }],
+  },
+  {
+    id: 'experience', title: '경력', label: 'EXPERIENCE',
+    items: [{ title: 'GS25 동남파라곤점', detail: '스토어 매니저', period: '2022.10 ~ 2026.11' }],
+  },
+  {
+    id: 'languages', title: '어학', label: 'LANGUAGES',
+    items: [{ title: 'OPic · IM1', detail: '영어 · ACTFL', period: '2026.09' }],
+  },
+  {
+    id: 'military', title: '병역', label: 'MILITARY SERVICE',
+    items: [{ title: '육군 병장 만기제대', detail: '군필', period: '2021.03 ~ 2022.09' }],
+  },
+]
+
 export interface Project {
   id: string
   number: string
   name: string
   category: string
+  role: string
+  period?: string
   subtitle: string
   description: string
   stack: string[]
   contributions: { title: string; description: string }[]
   outcome: string
   reflection: string
-  repository?: string
+  repositories?: { label: string; url: string }[]
   demo?: string
 }
 
 // 기간·팀 규모·성과 수치·저장소 주소는 확인한 실제 정보만 추가합니다.
 export const projects: Project[] = [
   {
-    id: 'withpet',
+    id: 'raildock',
     number: '01',
-    name: 'WithPet',
-    category: 'AI · WEB SERVICE',
-    subtitle: 'AI로 그려보는, 함께하는 일상',
-    description: 'AI 이미지 시각화와 챗봇을 접목한 유기동물 입양 플랫폼. 사용자 화면부터 AI 서버까지, 서비스의 여러 접점을 연결했습니다.',
-    stack: ['React', 'FastAPI', 'Docker', 'MySQL', 'Spring Boot'],
+    name: 'RailDock',
+    category: 'RAILWAY · AI PLATFORM',
+    role: '설계 · 프론트엔드 개발',
+    period: '2026.01 ~ 2026.03',
+    subtitle: '철도 유지보수 자동화 플랫폼',
+    description: 'AI 결함 탐지 결과와 분석 상태를 확인하고, 지도에서 결함 위치를 살펴보는 관리 플랫폼입니다. 서비스 설계와 프론트엔드 개발을 담당했습니다.',
+    stack: ['React', 'TypeScript', 'OpenLayers', 'Bounding Box', 'LLM / RAG 설계'],
     contributions: [
-      { title: 'AI 이미지 서버 구축', description: 'FastAPI 기반 AI 이미지 서버를 구축하고, 입양 전 모습을 시각화하는 기능을 구현했습니다.' },
-      { title: '서비스 구조 설계', description: 'Docker 기반 서비스 구조를 설계하며 프론트엔드·백엔드·AI 서버를 함께 고려했습니다.' },
-      { title: '사용자 화면 및 AI 연동', description: 'React UI 개발과 UX 설계, AI 챗봇 기획 및 연동을 담당했습니다.' },
+      { title: 'React / TypeScript 관리 화면', description: '철도 유지보수 업무를 위한 관리 화면을 설계하고 React와 TypeScript로 개발했습니다.' },
+      { title: '지도 기반 결함 위치 시각화', description: 'OpenLayers를 활용해 지도 위에서 결함 위치를 확인할 수 있도록 시각화했습니다.' },
+      { title: 'Bounding Box 조회·수정 UI', description: '탐지된 결함의 Bounding Box를 조회하고 수정할 수 있는 UI를 구현했습니다.' },
+      { title: 'AI 탐지 결과 및 분석 상태 조회', description: 'AI 결함 탐지 결과와 분석 진행 상태를 확인하는 화면을 개발했습니다.' },
+      { title: 'LLM / RAG 보고서 자동화 설계', description: 'LLM과 RAG를 활용한 유지보수 보고서 자동화 방식을 설계했습니다.' },
     ],
-    outcome: 'AI 이미지 시각화와 챗봇을 활용한 입양 서비스 기능을 구현했습니다.',
-    reflection: '화면 구현과 AI 서버 구축을 함께 경험하며, 사용자 흐름과 서버의 역할을 연결하는 관점으로 서비스를 바라보았습니다.',
+    outcome: '결함 위치 시각화, Bounding Box 조회·수정, AI 탐지 결과와 분석 상태 조회를 관리 화면으로 구현했습니다.',
+    reflection: 'AI 분석 결과를 사용자가 확인하고 수정하는 화면으로 연결하고, 보고서 자동화까지 이어지는 업무 흐름을 설계했습니다.',
+    repositories: [
+      { label: '프론트엔드 코드', url: 'https://github.com/AIVLE-08-14/raildock-front' },
+      { label: '백엔드 코드 (팀 저장소)', url: 'https://github.com/AIVLE-08-14/raildock-server' },
+    ],
   },
   {
-    id: 'messenger',
+    id: 'club',
     number: '02',
-    name: '007 Secret Messenger',
-    category: 'SERVER PROGRAMMING',
-    subtitle: '메시지가 전달되는 과정을 이해하다',
-    description: '암호화 메신저 프로젝트. 메시지의 암호화·복호화 흐름을 설계하고, 클라이언트 UI 구조를 기획했습니다.',
-    stack: ['Server Programming', '암호화 / 복호화', 'Client UI'],
+    name: '동아리 홈페이지',
+    category: 'FULLSTACK · WEB SERVICE',
+    role: '설계 · 풀스택 개발 · DB 및 네트워크 관리',
+    subtitle: '설계부터 배포 구성까지, 서비스 전반을 개발하다',
+    description: '학교 동아리 홈페이지의 설계, 프론트엔드, 백엔드, DB, 네트워크를 전반적으로 개발·관리했습니다. RBAC를 적용해 사용자 역할에 따라 권한을 구분했습니다.',
+    stack: ['React', 'Spring Boot', 'Spring Security', 'RBAC', 'AWS'],
     contributions: [
-      { title: '암호화·복호화 흐름 설계', description: '메시지가 전달되는 과정에서 암호화와 복호화의 흐름을 설계했습니다.' },
-      { title: '클라이언트 UI 구조 기획', description: '데이터 흐름을 바탕으로 클라이언트 화면 구조를 기획했습니다.' },
+      { title: '서비스 설계 및 React 프론트엔드', description: '동아리 홈페이지를 설계하고 React 기반 프론트엔드를 개발했습니다.' },
+      { title: 'Spring Boot REST API', description: 'Spring Boot 기반 REST API를 개발해 프론트엔드와 백엔드를 연결했습니다.' },
+      { title: 'Spring Security 인증·인가와 RBAC', description: 'Spring Security로 인증·인가를 구현하고 USER / OPERATOR / ADMIN으로 역할을 나누어 접근 권한을 구분했습니다.' },
+      { title: 'DB 및 네트워크 개발·관리', description: '서비스에 필요한 DB와 네트워크를 포함해 개발과 관리를 전반적으로 담당했습니다.' },
+      { title: 'AWS 기반 서비스 배포 구성', description: 'AWS를 활용해 서비스 배포 환경을 구성했습니다.' },
     ],
-    outcome: '메시지의 데이터 흐름과 클라이언트 UI 구조를 설계했습니다.',
-    reflection: '사용자에게 보이는 화면뿐 아니라, 그 뒤에서 데이터가 어떻게 전달되는지 이해하는 것이 중요하다는 점을 배웠습니다.',
+    outcome: 'React 화면과 Spring Boot API를 연결하고, 인증·인가와 역할별 접근 권한을 적용한 동아리 홈페이지를 개발했습니다.',
+    reflection: '화면과 서버뿐 아니라 DB, 네트워크, AWS 배포 구성까지 맡으며 서비스 전반을 개발하고 관리하는 경험을 쌓았습니다.',
   },
 ]
 
 export const skills = [
-  { number: '01', title: 'Backend & AI', label: '프로젝트 활용', technologies: ['Python', 'FastAPI'], description: 'WithPet의 AI 이미지 서버 구축과 AI 기능 연동에 활용했습니다.' },
-  { number: '02', title: 'Frontend', label: '프로젝트 활용', technologies: ['React', 'TypeScript', 'Tailwind CSS', 'HTML / CSS / JavaScript'], description: 'WithPet의 React UI를 개발했습니다. 이 포트폴리오는 React·TypeScript·Tailwind CSS로 구성했습니다.' },
-  { number: '03', title: 'Infrastructure & Data', label: '활용 경험 / 보유 기술', technologies: ['Docker', 'MySQL'], description: 'Docker 기반 서비스 구조 설계 경험이 있습니다. MySQL은 보유 기술로 정리하고 있습니다.' },
-  { number: '04', title: 'Currently learning', label: '학습 중', technologies: ['Spring Boot'], description: '백엔드 개발 역량을 넓히기 위해 Spring Boot를 학습하고 있습니다.' },
+  { number: '01', title: 'Backend & Security', label: '프로젝트 활용', technologies: ['Spring Boot', 'Spring Security', 'REST API', 'RBAC'], description: '동아리 홈페이지의 REST API와 인증·인가를 구현하고, USER / OPERATOR / ADMIN 권한을 구분했습니다.' },
+  { number: '02', title: 'Frontend & GIS', label: '프로젝트 활용', technologies: ['React', 'TypeScript', 'OpenLayers'], description: 'RailDock 관리 화면과 지도 기반 결함 위치 시각화, Bounding Box 조회·수정 UI를 개발했습니다.' },
+  { number: '03', title: 'Infrastructure & Data', label: '개발 · 관리 경험', technologies: ['AWS', 'DB', 'Network'], description: '동아리 홈페이지의 DB와 네트워크를 개발·관리하고 AWS 기반 서비스 배포 환경을 구성했습니다.' },
+  { number: '04', title: 'AI Workflow', label: '화면 개발 · 설계', technologies: ['AI 분석 결과 조회', 'LLM / RAG 설계'], description: 'AI 결함 탐지 결과와 분석 상태 조회 화면을 개발하고, LLM / RAG 기반 보고서 자동화를 설계했습니다.' },
 ]
